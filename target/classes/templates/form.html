@@ -9,30 +9,30 @@
     </head>
 
     <body>
-    <div class="container-md" border="1px">
-        <h3>Add new vehicle to parking</h3>
+    <div class="container-md" style="border=1px; border-style: solid; max-width: 25%; padding:30px; border-radius: 10px;border-color: rgb(0, 0, 0);">
+        <h3 style="text-align: center;">Add new vehicle </h3><br/>
         <form action="#" th:action="@{/form}" th:object="${vehicle}" method="post">
             <div class="form-group">
-                <div class="col-1">
-                    <label for="type">Vehicle type:</label>
-                    <select th:field="*{type}" class="form-control form-control-lg" size="1">
+                <div class="col-6">
+                    <label for="type">Vehicle type</label>
+                    <select th:field="*{type}" class="form-control form-control-lg" >
                         <option th:value="'Car'"
                                 th:text="Car"></option>
                     <option th:value="'Motorcycle'"
                                 th:text="Motorcycle"></option>
-                    </select>
+                    </select><br/>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-3">
-                    <label for="owner">Owner:</label>
-                    <input class="form-control" type="text" th:field="*{owner}" size="15"></input><br/>
+                <div class="col">
+                    <label for="owner">Owner</label>
+                    <input class="form-control" type="text" th:field="*{owner}" ></input><br/>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-3">
-                    <label for="plates">Licence Plate Number:</label>
-                    <input class="form-control" type="text" th:field="*{plates}" size="15"></input><br/>
+                <div class="col">
+                    <label for="plates">Licence Plate Number</label>
+                    <input class="form-control" type="text" th:field="*{plates}" ></input><br/>
                 </div>
             </div>
             <input class="btn btn-primary" type="submit" value="Submit"></input>
