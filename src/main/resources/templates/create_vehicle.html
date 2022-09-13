@@ -15,7 +15,7 @@
     <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
       <h1 class = "text-center"> Add New Vehicle </h1>
       <div class = "card-body">
-        <form th:action="@{/form}" th:object = "${vehicle}" method="POST">
+        <form th:action="@{/main/form}" th:object = "${vehicle}" method="POST">
           <div class ="form-group">
             <label> Plates Number </label>
             <input
@@ -40,7 +40,7 @@
 
           <div class ="form-group">
             <label for="type">Vehicle type</label>
-            <select th:field="*{type}" class="form-control form-control-lg" >
+            <select th:field="*{type}" class="form-select" >
               <option th:value="'Car'"
                       th:text="Car"></option>
               <option th:value="'Motorcycle'"

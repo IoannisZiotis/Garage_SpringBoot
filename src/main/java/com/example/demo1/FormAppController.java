@@ -38,8 +38,8 @@ public class FormAppController {
     }
 
     @GetMapping("/vehicles/{plates}")
-    public String deleteVehicle(@PathVariable String plates) {
-        vehicleService.deleteVehicleById(plates);
+    public String deliverVehicle(@PathVariable String plates) {
+        vehicleService.DeliverVehicle(plates);
         return "redirect:/main/vehicles";
     }
 
@@ -50,13 +50,17 @@ public class FormAppController {
         Vehicle vehicle = new Vehicle();
         model.addAttribute("vehicle", vehicle);
         return "create_vehicle";
-
     }
 
-    @RequestMapping(value="/{main}", method= RequestMethod.GET)
-    public String mainpage(Model model){
-        return "main";
-    }
+//    @GetMapping("/vehicles/newveh")
+//    public String Addvehicle(Model model){
+//        return "redirect:/main/vehicles";
+//    }
+
+//    @RequestMapping(value="/{main}", method= RequestMethod.GET)
+//    public String mainpage(Model model){
+//        return "main";
+//    }
 
 //    @RequestMapping(value="main/{form}", method= RequestMethod.GET)
 //    public String vehicleForm(Model model){
@@ -69,17 +73,17 @@ public class FormAppController {
 //        return "redirect:main/form";
 //    }
 //
-//    @RequestMapping(value="main/{form}", method= RequestMethod.POST)
-//    public String customerSubmit(@ModelAttribute Vehicle vehicle, Model model) {
-//
-//        model.addAttribute("vehicle", vehicle);
-//        String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s",
-//                vehicle.getPlates(), vehicle.getOwner(), vehicle.getType());
-//        log.info(info);
-//        vehicleRepository.save(vehicle);
-//
-//        return "result";
-//    }
+    @RequestMapping(value="main/{form}", method= RequestMethod.POST)
+    public String customerSubmit(@ModelAttribute Vehicle vehicle, Model model) {
+
+        model.addAttribute("vehicle", vehicle);
+        String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s",
+                vehicle.getPlates(), vehicle.getOwner(), vehicle.getType());
+        log.info(info);
+        vehicleRepository.save(vehicle);
+
+        return "result";
+    }
 
 
 }

@@ -36,9 +36,8 @@ public class VehicleServiceImpl implements VehicleService {
     }
 
     @Override
-    public void deleteVehicleById(String plates) {
-        Vehiclerepository.deleteById(plates);
+    public void DeliverVehicle(String plates) {
+        Vehiclerepository.DeliverVehicle(plates);
     }
-
 }
 
