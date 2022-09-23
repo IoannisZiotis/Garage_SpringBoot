@@ -39,6 +39,17 @@
           </div>
 
           <div class ="form-group">
+            <label> Employee </label>
+            <input
+                    type = "text"
+                    name = "employee"
+                    th:field = "*{employee}"
+                    class = "form-control"
+                    placeholder="Enter Employee's Name"
+            />
+          </div>
+
+          <div class ="form-group">
             <label for="type">Vehicle type</label>
             <select th:field="*{type}" class="form-select" >
               <option th:value="'Car'"

@@ -8,7 +8,7 @@
 <body>
 <div class ="container">
   <div class = "row">
-    <h1> List Vehicles </h1>
+    <h1> List of Vehicles </h1>
   </div>
 
   <div class = "row">
@@ -22,7 +22,11 @@
       <th> Type</th>
       <th> Plates</th>
       <th> Owner's Name </th>
+      <th> Employee's Name </th>
       <th> Charge </th>
+      <th> Start Date</th>
+      <th> Actions </th>
+
     </tr>
     </thead>
 
@@ -31,6 +35,9 @@
       <td th:text = "${vehicle.type}"></td>
       <td th:text = "${vehicle.plates}"></td>
       <td th:text = "${vehicle.owner}"></td>
+      <td th:text = "${vehicle.employee}"></td>
+      <td th:text = "${vehicle.charge}"></td>
+      <td th:text = "${vehicle.start_date}"></td>
       <td>
         <a th:href = "@{/vehicles/edit/{plates}(plates=${vehicle.plates})}"
            class = "btn btn-primary">Update</a>

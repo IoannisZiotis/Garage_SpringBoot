@@ -5,11 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.example.demo1.repository.VehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -19,10 +20,8 @@ public class FormAppController {
     private VehicleService vehicleService;
     private final VehicleRepository vehicleRepository;
 
-//    @Autowired
-//    public FormAppController(VehicleRepository vehiclerepository) {
-//        this.vehiclerepository = vehiclerepository;
-//    }
+    private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+
 
     public FormAppController(VehicleService vehicleService,VehicleRepository vehicleRepository) {
         this.vehicleService = vehicleService;
@@ -38,9 +37,11 @@ public class FormAppController {
     }
 
     @GetMapping("/vehicles/{plates}")
-    public String deliverVehicle(@PathVariable String plates) {
+    public String deliverVehicle(Model model,@PathVariable String plates) {
         vehicleService.DeliverVehicle(plates);
-        return "redirect:/main/vehicles";
+//        model.addAttribute("count", count);
+        return "garage";
+//        return "redirect:/main/vehicles";
     }
 
     @GetMapping("/vehicles/new")
@@ -75,15 +76,17 @@ public class FormAppController {
 //
     @RequestMapping(value="main/{form}", method= RequestMethod.POST)
     public String customerSubmit(@ModelAttribute Vehicle vehicle, Model model) {
-
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        vehicle.setStart_date(sdf1.format(timestamp));
         model.addAttribute("vehicle", vehicle);
-        String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s",
-                vehicle.getPlates(), vehicle.getOwner(), vehicle.getType());
+        String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s, employee = %s, start_date='%s'",
+                vehicle.getPlates(), vehicle.getOwner(), vehicle.getType(), vehicle.getEmployee(), vehicle.getStart_date());
         log.info(info);
         vehicleRepository.save(vehicle);
 
         return "result";
     }
+
 
 
 }

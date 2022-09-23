@@ -1,5 +1,6 @@
 package com.example.demo1.service.impl;
 
+import com.example.demo1.Garage;
 import com.example.demo1.Vehicle;
 import com.example.demo1.service.VehicleService;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void DeliverVehicle(String plates) {
-        Vehiclerepository.DeliverVehicle(plates);
+         Vehiclerepository.DeliverVehicle(plates);
     }
 }
 
