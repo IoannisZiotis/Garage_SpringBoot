@@ -14,6 +14,6 @@ public interface VehicleService {
 	Vehicle getVehicleById(String plates);
 
 	Vehicle updateVehicle(Vehicle vehicle);
-
-	void DeliverVehicle(String plates);
+	Vehicle updateVehicle1(Vehicle vehicle);
+	void DeliverVehicle(Vehicle vehicle);
 }

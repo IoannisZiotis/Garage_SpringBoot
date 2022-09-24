@@ -1,8 +1,8 @@
 package com.example.demo1;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -25,10 +25,9 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String plates, String owner, float charge, String type, String Employee, String start_date) {
+    public Vehicle(String plates, String owner, String type, String Employee, String start_date) {
         this.Plates = plates;
         this.Owner = owner;
-        this.Charge = 0;
         this.Type = type;
         this.Employee = Employee;
         this.Start_date = start_date;
@@ -88,6 +87,8 @@ public class Vehicle {
                 "Vehicle[plates=%s, owner='%s', type='%s', employee='%s', employee='%s', start_date='%s']",
                 Plates, Owner, Type, Employee, Start_date);
     }
+
+
 
 }
 

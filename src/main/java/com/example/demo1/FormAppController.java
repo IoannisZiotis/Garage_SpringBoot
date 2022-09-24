@@ -38,8 +38,9 @@ public class FormAppController {
 
     @GetMapping("/vehicles/{plates}")
     public String deliverVehicle(Model model,@PathVariable String plates) {
-        vehicleService.DeliverVehicle(plates);
-//        model.addAttribute("count", count);
+        Vehicle vehicle = vehicleService.getVehicleById(plates);
+        vehicleService.DeliverVehicle(vehicle);
+//        model.addAttribute("garage", garage);
         return "garage";
 //        return "redirect:/main/vehicles";
     }
@@ -47,7 +48,6 @@ public class FormAppController {
     @GetMapping("/vehicles/new")
     public String createVehicleForm(Model model) {
 
-        // create student object to hold student form data
         Vehicle vehicle = new Vehicle();
         model.addAttribute("vehicle", vehicle);
         return "create_vehicle";
@@ -82,7 +82,7 @@ public class FormAppController {
         String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s, employee = %s, start_date='%s'",
                 vehicle.getPlates(), vehicle.getOwner(), vehicle.getType(), vehicle.getEmployee(), vehicle.getStart_date());
         log.info(info);
-        vehicleRepository.save(vehicle);
+        vehicleRepository.savevehicle(vehicle);
 
         return "result";
     }

@@ -35,10 +35,13 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle updateVehicle(Vehicle vehicle) {
         return Vehiclerepository.save(vehicle);
     }
-
     @Override
-    public void DeliverVehicle(String plates) {
-         Vehiclerepository.DeliverVehicle(plates);
+    public Vehicle updateVehicle1(Vehicle vehicle) {
+        return Vehiclerepository.savevehicle(vehicle);
+    }
+    @Override
+    public void DeliverVehicle(Vehicle vehicle) {
+         Vehiclerepository.DeliverVehicle(vehicle);
     }
 }
 
