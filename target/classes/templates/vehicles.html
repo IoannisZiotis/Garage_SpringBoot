@@ -25,6 +25,7 @@
       <th> Employee's Name </th>
       <th> Charge </th>
       <th> Start Date</th>
+      <th> Parking Spot ID</th>
       <th> Actions </th>
 
     </tr>
@@ -38,6 +39,7 @@
       <td th:text = "${vehicle.employee}"></td>
       <td th:text = "${vehicle.charge}"></td>
       <td th:text = "${vehicle.start_date}"></td>
+      <td th:text = "${vehicle.spot_id}"></td>
       <td>
         <a th:href = "@{/vehicles/edit/{plates}(plates=${vehicle.plates})}"
            class = "btn btn-primary">Update</a>
@@ -46,6 +48,28 @@
            class = "btn btn-danger">Deliver</a>
 
       </td>
+    </tr>
+    </tbody>
+
+  </table>
+  <div class = "row">
+    <h1> Garage Data </h1>
+  </div>
+  <table class = "table table-striped table-bordered">
+    <thead class = "table-dark">
+    <tr>
+      <th> Used Spots</th>
+      <th> Total spots</th>
+      <th> Total income </th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each = "garage: ${Garage}">
+      <td th:text = "${garage.num_used_spots}"></td>
+      <td th:text = "${garage.num_of_spots}"></td>
+      <td th:text = "${garage.total_income}"></td>
     </tr>
     </tbody>
 

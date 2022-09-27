@@ -16,4 +16,6 @@ public interface VehicleService {
 	Vehicle updateVehicle(Vehicle vehicle);
 	Vehicle updateVehicle1(Vehicle vehicle);
 	void DeliverVehicle(Vehicle vehicle);
+
+	Garage GetGarage();
 }

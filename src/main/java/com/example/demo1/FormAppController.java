@@ -32,7 +32,9 @@ public class FormAppController {
     @GetMapping("/main/vehicles")
     public String listVehicles(Model model) {
         List<Vehicle> vehicles = vehicleService.getAllVehicles();
+        Garage garage = vehicleService.GetGarage();
         model.addAttribute("vehicles", vehicles);
+        model.addAttribute("Garage", garage);
         return "vehicles";
     }
 
@@ -41,8 +43,8 @@ public class FormAppController {
         Vehicle vehicle = vehicleService.getVehicleById(plates);
         vehicleService.DeliverVehicle(vehicle);
 //        model.addAttribute("garage", garage);
-        return "garage";
-//        return "redirect:/main/vehicles";
+//        return "garage";
+        return "redirect:/main/vehicles";
     }
 
     @GetMapping("/vehicles/new")
@@ -82,7 +84,7 @@ public class FormAppController {
         String info = String.format("Vehicle Submission: plates = %s, owner = %s, type = %s, employee = %s, start_date='%s'",
                 vehicle.getPlates(), vehicle.getOwner(), vehicle.getType(), vehicle.getEmployee(), vehicle.getStart_date());
         log.info(info);
-        vehicleRepository.savevehicle(vehicle);
+        vehicleRepository.SaveVehicle(vehicle);
 
         return "result";
     }

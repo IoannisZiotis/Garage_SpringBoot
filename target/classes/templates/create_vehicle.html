@@ -50,6 +50,17 @@
           </div>
 
           <div class ="form-group">
+            <label> Spot ID </label>
+            <input
+                    type = "integer"
+                    name = "spot_id"
+                    th:field = "*{spot_id}"
+                    class = "form-control"
+                    placeholder="Enter Parking Spot ID"
+            />
+          </div>
+
+          <div class ="form-group">
             <label for="type">Vehicle type</label>
             <select th:field="*{type}" class="form-select" >
               <option th:value="'Car'"

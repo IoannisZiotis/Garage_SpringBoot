@@ -37,11 +37,16 @@ public class VehicleServiceImpl implements VehicleService {
     }
     @Override
     public Vehicle updateVehicle1(Vehicle vehicle) {
-        return Vehiclerepository.savevehicle(vehicle);
+        return Vehiclerepository.SaveVehicle(vehicle);
     }
     @Override
     public void DeliverVehicle(Vehicle vehicle) {
          Vehiclerepository.DeliverVehicle(vehicle);
+    }
+
+    @Override
+    public Garage GetGarage(){
+        return Vehiclerepository.getGarage();
     }
 }
 

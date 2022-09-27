@@ -14,6 +14,8 @@ public class Vehicle {
 
     private String Owner;
 
+    @Column(unique = true)
+    private int Spot_id;
     private float Charge;
     @Column(columnDefinition = "VARCHAR(20) CHECK (Type in ('Car','Motorcycle'))")
     private String Type;
@@ -25,12 +27,13 @@ public class Vehicle {
     public Vehicle() {
     }
 
-    public Vehicle(String plates, String owner, String type, String Employee, String start_date) {
+    public Vehicle(String plates, String owner, String type, String Employee, String start_date,int spot_id) {
         this.Plates = plates;
         this.Owner = owner;
         this.Type = type;
         this.Employee = Employee;
         this.Start_date = start_date;
+        this.Spot_id = spot_id;
     }
 
     public String getEmployee() {
@@ -81,11 +84,19 @@ public class Vehicle {
         Type = type;
     }
 
+    public int getSpot_id() {
+        return Spot_id;
+    }
+
+    public void setSpot_id(int spot_id) {
+        Spot_id = spot_id;
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Vehicle[plates=%s, owner='%s', type='%s', employee='%s', employee='%s', start_date='%s']",
-                Plates, Owner, Type, Employee, Start_date);
+                "Vehicle[plates=%s, owner='%s', type='%s', employee='%s', employee='%s', start_date='%s',spot_id='%d']",
+                Plates, Owner, Type, Employee, Start_date,Spot_id);
     }
 
 

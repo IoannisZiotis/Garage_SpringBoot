@@ -1,5 +1,6 @@
 package com.example.demo1.repository;
 import com.example.demo1.Vehicle;
+import com.example.demo1.Garage;
 import  com.example.demo1.repository.VehicleRepositoryCustom;
 import org.springframework.stereotype.Repository;
 import com.example.demo1.Garage;
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,19 +25,33 @@ public class VehicleRepositoryImpl implements VehicleRepositoryCustom{
 
     private static final SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
     @Override
-    public Vehicle savevehicle(Vehicle vehicle){
-        Query query = entityManager.createNativeQuery("select  from vehicle " +
-                "values (?1,?2,?3,?4,?5)", Vehicle.class);
-        Query query = entityManager.createNativeQuery("insert into vehicle " +
-                "values (?1,?2,?3,?4,?5)", Vehicle.class);
-        query.setParameter(1, vehicle.getPlates());
-        query.setParameter(2, vehicle.getOwner());
-        query.setParameter(3, vehicle.getType());
-        query.setParameter(4, vehicle.getEmployee());
-        query.setParameter(5, vehicle.getStart_date());
-        query.executeUpdate();
-        query = entityManager.createNativeQuery("update vehicle set num_used_spots = num_used_spots + 1");
-        query.executeUpdate();
+    public Vehicle SaveVehicle(Vehicle vehicle){
+
+        Query query = entityManager.createNativeQuery("select num_of_spots,num_used_spots from garage");
+        List spots = query.getResultList();
+        List<Object> val = Arrays.asList(1, 2, 3);
+        for (Object o : spots) {
+            if (o instanceof Object[]) {
+                val = Arrays.asList((Object[]) o);
+            } else {
+                System.out.println(o);
+            }
+        }
+        if (val.get(0) == val.get(1)){
+            return vehicle;
+        }
+        else {
+            query = entityManager.createNativeQuery("insert into vehicle " +
+                    "values (?1,?2,?3,?4,?5)", Vehicle.class);
+            query.setParameter(1, vehicle.getPlates());
+            query.setParameter(2, vehicle.getOwner());
+            query.setParameter(3, vehicle.getType());
+            query.setParameter(4, vehicle.getEmployee());
+            query.setParameter(5, vehicle.getStart_date());
+            query.executeUpdate();
+            query = entityManager.createNativeQuery("update garage set num_used_spots = num_used_spots + 1");
+            query.executeUpdate();
+        }
         return vehicle;
     }
     @Override
@@ -92,7 +108,13 @@ public class VehicleRepositoryImpl implements VehicleRepositoryCustom{
         query = entityManager.createNativeQuery("DELETE FROM vehicle " +
                 "WHERE plates = ?1", Vehicle.class);
         query.setParameter(1, vehicle.getPlates()).executeUpdate();
-
-
     }
+
+    @Override
+    public Garage getGarage(){
+        Query query = entityManager.createNativeQuery("SELECT * FROM garage WHERE id = 1", Garage.class);
+        Garage garage = (Garage) query.getSingleResult();
+        return garage;
+    }
+
 }

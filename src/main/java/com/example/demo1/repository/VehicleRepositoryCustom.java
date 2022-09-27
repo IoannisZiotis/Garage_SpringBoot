@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface VehicleRepositoryCustom {
     public void DeliverVehicle(Vehicle vehicle);
-    public Vehicle savevehicle(Vehicle vehicle);
+    public Vehicle SaveVehicle(Vehicle vehicle);
+
+    public Garage getGarage();
 }
